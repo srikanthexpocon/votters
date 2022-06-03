@@ -157,7 +157,7 @@ const DataTableWithButtons = () => {
             </UncontrolledButtonDropdown>
             <Button className='ml-2' color='primary' onClick={handleModal}>
               <Plus size={15} />
-              <span className='align-middle ml-50'>Add Record</span>
+              <span className='align-middle ml-50'>Add Exibitior</span>
             </Button>
           </div>
         </CardHeader>

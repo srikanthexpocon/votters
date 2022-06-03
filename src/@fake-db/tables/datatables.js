@@ -10,14 +10,14 @@ const data = [
     stall_no: 'A1',
     post: 'Nuclear Power Engineer',
     email: 'kocrevy0@thetimes.co.uk',
-    password: 'abcd',
+    password: 'abcd1234',
     contact: '+917036042517',
     city: 'Krasnosilka',
     start_date: '09/23/2016',
     salary: '$23896.35',
     age: '61',
     experience: '1 Year',
-    status:" Active"
+    status:1
   },
   {
     responsive_id: '',
@@ -26,14 +26,14 @@ const data = [
     full_name: "Torrent",
     stall_no: 'A2',
     email: 'bcoulman1@yolasite.com',
-    password: 'abcd',
+    password: 'abcd1234',
     contact: '+917036042517',
     city: 'Hinigaran',
     start_date: '05/20/2018',
     salary: '$13633.69',
     age: '63',
     experience: '3 Years',
-    status: "In-Active"
+    status: 3
   },
   {
     responsive_id: '',
@@ -42,14 +42,14 @@ const data = [
     full_name: "Emcure",
     stall_no: 'A3',
     email: 'sganderton2@tuttocitta.it',
-    password: 'abcd',
+    password: 'abcd1234',
     contact: '+917036042517',
     city: 'Golcowa',
     start_date: '03/24/2018',
     salary: '$13076.28',
     age: '66',
     experience: '6 Years',
-    status: "Rejected"
+    status: 3
   },
   {
     responsive_id: '',
@@ -58,14 +58,14 @@ const data = [
     full_name: "Intus",
     stall_no: 'A4',
     email: 'dcrossman3@google.co.jp',
-    password: 'abcd',
+    password: 'abcd1234',
     contact: '+917036042517',
     city: 'Paquera',
     start_date: '12/03/2017',
     salary: '$12336.17',
     age: '22',
     experience: '2 Years',
-    status: "Active"
+    status: 1
   },
   {
     responsive_id: '',
@@ -74,14 +74,14 @@ const data = [
     full_name: "Sun Pharma",
     stall_no: 'A5',
     email: 'hnisius4@gnu.org',
-    password: 'abcd',
+    password: 'abcd1234',
     contact: '+917036042517',
     city: 'Lucan',
     start_date: '08/25/2017',
     salary: '$10909.52',
     age: '33',
     experience: '3 Years',
-    status: "Active"
+    status:1
   },
   {
     responsive_id: '',
@@ -90,14 +90,14 @@ const data = [
     full_name: "Sun Pharma",
     stall_no: 'A6',
     email: 'ghoneywood5@narod.ru',
-    password: 'abcd',
+    password: 'abcd1234',
     contact: '+917036042517',
     city: 'Maofan',
     start_date: '06/01/2017',
     salary: '$17803.80',
     age: '61',
     experience: '1 Year',
-    status: "Active"
+    status: 3
   },
   {
     responsive_id: '',
@@ -106,14 +106,14 @@ const data = [
     full_name: "Sun Pharma",
     stall_no: 'A7',
     email: 'ediehn6@163.com',
-    password: 'abcd',
+    password: 'abcd1234',
     contact: '+917036042517',
     city: 'Lampuyang',
     start_date: '10/15/2017',
     salary: '$18991.67',
     age: '59',
     experience: '9 Years',
-    status: "Active"
+    status: 3
   },
   {
     responsive_id: '',

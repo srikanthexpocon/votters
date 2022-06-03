@@ -3,19 +3,22 @@ import Avatar from '@components/avatar'
 
 // ** Third Party Components
 import axios from 'axios'
-import { MoreVertical, Edit, FileText, Archive, Trash, Check, Eye } from 'react-feather'
-import { Badge, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem, Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap'
+import { MoreVertical, Edit, FileText, Archive, Trash, Check, Eye, XCircle} from 'react-feather'
+import { Badge, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem, Button, Modal, ModalHeader, ModalBody, ModalFooter, Row, Col, Card, CardHeader, CardTitle, CardBody, CardText} from 'reactstrap'
 import * as Icons from 'react-feather'
 import { useState } from "react"
+import checkgif from '@src/assets/images/icons8-ok.gif'
+import alergif from '@src/assets/images/icons8-box-important.gif'
+import cancelpng from '@src/assets/images/icons8-close-48.png'
 
 // ** Vars
 const states = ['success', 'danger', 'warning', 'info', 'dark', 'primary', 'secondary']
 
 const status = {
-  1: { title: 'Current', color: 'light-primary' },
+  1: { title: 'Active', color: 'light-success' },
   2: { title: 'Professional', color: 'light-success' },
-  3: { title: 'Rejected', color: 'light-danger' },
-  4: { title: 'Resigned', color: 'light-warning' },
+  3: { title: 'In-Active', color: 'light-danger' },
+  4: { title: 'Delete', color: 'light-warning' },
   5: { title: 'Applied', color: 'light-info' }
 }
 
@@ -157,7 +160,7 @@ export const columns = [
             <DropdownMenu right>
               <DropdownItem tag='a' href='/' className='w-100' onClick={e => e.preventDefault()}>
                 <FileText size={15} />
-                <span className='align-middle ml-50'>Detailssss</span>
+                <span className='align-middle ml-50'>Details</span>
               </DropdownItem>
               <DropdownItem tag='a' href='/' className='w-100' onClick={e => e.preventDefault()}>
                 <Archive size={15} />
@@ -207,7 +210,7 @@ export const multiLingColumns = [
     name: 'Email',
     selector: 'email',
     sortable: true,
-    minWidth: '100px'
+    minWidth: '200px'
   },
   // {
   //   name: 'Date',
@@ -226,7 +229,7 @@ export const multiLingColumns = [
     name: 'Password',
     selector: 'password',
     sortable: true,
-    minWidth: '10px'
+    maxWidth: '10%'
   },
 
   {
@@ -239,14 +242,14 @@ export const multiLingColumns = [
     name: 'Status',
     selector: 'status',
     sortable: true,
-    minWidth: '150px'
-    // cell: row => {
-    //   return (
-    //     <Badge color={status[row.status].color} pill>
-    //       {status[row.status].title}
-    //     </Badge>
-    //   )
-    // }
+    minWidth: '150px',
+    cell: row => {
+      return (
+        <Badge color={status[row.status].color} pill>
+          {status[row.status].title}
+        </Badge>
+      )
+    }
   },
   // {
   //   name: 'Status',
@@ -265,6 +268,13 @@ export const multiLingColumns = [
     name: 'Actions',
     allowOverflow: true,
     cell: row => {
+      const [inactive, setInactive] = useState(false)
+      const [eventdelete, setEventDelete] = useState(false)
+      const [successin, setSuccessin] = useState(false)
+      const [deletesuccess, setDeleteSuccess] = useState(false)
+      const [areYouSure, setAreYouSure] = useState(false)
+      const [cancelModal, setCancelModal] = useState(false)
+      const [successModal, setSuccessModal] = useState(false)
       const [basicModal, setBasicModal] = useState(false)
       return (
         <>
@@ -272,34 +282,246 @@ export const multiLingColumns = [
         {/* <div><a className='btn' style={{color:"white", backgroundColor:"red"}} onClick={() => setBasicModal(!basicModal)}>Delete</a></div> */}
         <UncontrolledDropdown>
             <DropdownToggle className='pr-1' tag='span'>
-              {/* <MoreVertical onClick={() => setBasicModal(!basicModal)} size={15} /> */}
-              <Edit onClick={() => setBasicModal(!basicModal)}  size={20}  />
+              <Edit size={20} />
             </DropdownToggle>
-           
+            <DropdownMenu right>
+              <DropdownItem className='w-100' onClick={() => {
+              setAreYouSure(!areYouSure)
+          }} >
+                <Check size={15} />
+                <span className='align-middle ml-50' >Activate</span>
+              </DropdownItem>
+              <DropdownItem  className='w-100' onClick={ () => { setInactive(!inactive) } } >
+                <XCircle size={15} />
+                
+                <span className='align-middle ml-50'>In-Active</span>
+              </DropdownItem>
+              <DropdownItem className='w-100' onClick={ () => { setEventDelete(!eventdelete) } }>
+                <Trash size={15} />
+                <span className='align-middle ml-50'>Delete</span>
+              </DropdownItem>
+            </DropdownMenu>
           </UncontrolledDropdown>
           {/* <Edit  size={15} /> */}
+          {/* <Edit onClick={() => setBasicModal(!basicModal)}  size={20}  /> */}
           <Eye  size={20} />
         </div>
-        <Modal isOpen={basicModal} toggle={() => setBasicModal(!basicModal)}>
-          <ModalHeader toggle={() => setBasicModal(!basicModal)}>Member List</ModalHeader>
-          <ModalBody className='d-flex justify-content-center'>
-          <div><Icons.AlertCircle size={70}/></div> <br /> <br /> 
-          </ModalBody>
-          <div className='d-flex justify-content-center'><h2>Are You Sure</h2></div>
-          <div className='d-flex justify-content-center'><p>You won't be able to revert this!</p></div>
+        
+        <Row>
+     <Col md="12"   style={{display: 'flex', justifyContent: 'right', bottom:'12px'}}>
+     <>
+     {/* <Button
+        className="ml-2"
+        color="primary"
+        onClick={() => setAddElection(!addElection)}
+      >
+        <Plus size={15} />
+        <span className="align-middle ml-50">Add Announcement</span>
+      </Button> */}
+      {/* <Modal isOpen={addElection} toggle={() => setAddElection(!addElection)}>
+        <ModalHeader toggle={() => setAddElection(!addElection)}>
+          Create an Announcement
+        </ModalHeader>
+        <ModalBody>
           
-          <ModalFooter>
-          <div style={{display:'flex', justifyContent:'space-between', width:'100%'}}>
-            
-          <Button.Ripple className='d-flex justify-content-center' style={{color:"white", backgroundColor:"red"}} outline onClick={() => setBasicModal(!basicModal)}>
-            Yes, Approved it!
+        </ModalBody>
+        <ModalFooter style={{display:'flex', width:'100', justifyContent:'space-between'}}>
+          <Button color="success" onClick={() => {
+              setAreYouSure(!areYouSure)
+            setTimeout(() => {
+              setAddElection(!addElection)
+            }, 200)
+          }}>
+            Create New Announcement!
+          </Button>
+          <Button.Ripple  color="danger" type="reset" onClick={() => {
+              setAddElection(!addElection)
+          }} >
+            Cancel
           </Button.Ripple>
-          <Button.Ripple className='d-flex justify-content-center' color='primary' outline onClick={() => setBasicModal(!basicModal)} >
-            Cancle
+        </ModalFooter>
+      </Modal> */}
+      {/* areyousure */}
+      <Modal isOpen={areYouSure} toggle={() => setAreYouSure(!areYouSure)}>
+        <ModalHeader toggle={() => setAreYouSure(!areYouSure)}>
+        </ModalHeader>
+        <ModalBody style={{textAlign:'center', display:'flex', flexDirection:'column', gap:'10px'}}>
+          <img width={85} height={85} style={{display:'block', margin:'auto'}}  src={alergif}></img>
+          <h3>Are you sure?</h3>
+          <p>You won't be able to revert this!</p>
+        </ModalBody>
+        <ModalFooter style={{display:'flex', width:'100%', justifyContent:'space-between'}}>
+          <Button color="success" onClick={() => {
+            setSuccessModal(!successModal)
+            setTimeout(() => {
+              setAreYouSure(!areYouSure)
+            }, 200)
+          }}>
+            Yes, Activate.
+          </Button>
+          <Button.Ripple outline color="primary" type="reset" onClick={() => {
+              setCancelModal(!cancelModal)
+              setTimeout(() => {
+                setAreYouSure(!areYouSure)
+              }, 200)
+          }}>
+            Cancel
           </Button.Ripple>
-          </div>  
-          </ModalFooter>
-        </Modal> 
+        </ModalFooter>
+      </Modal>
+       {/* are you sure */}
+       {/* Cancelmodal */}
+       <Modal isOpen={cancelModal} toggle={() => setCancelModal(!cancelModal)}>
+        <ModalBody style={{textAlign:'center', display:'flex', flexDirection:'column', gap:'10px'}}>
+          <img width={85} height={85} style={{display:'block', margin:'auto'}}  src={cancelpng}></img>
+          <h3>Cancelled</h3>
+          <p>Re-Create New Election Next Time</p>
+        </ModalBody>
+        <ModalFooter>
+          <Button style={{display:'block', margin:'auto'}} color="primary" onClick={() => {
+            setCancelModal(!cancelModal)
+           
+            }}>
+            OK
+          </Button>
+        </ModalFooter>
+      </Modal>
+        {/* Cancelmodal */}
+        {/* sucessmodal */}
+       <Modal isOpen={successModal} toggle={() => setSuccessModal(!successModal)}>
+        <ModalBody style={{textAlign:'center', display:'flex', flexDirection:'column', gap:'10px'}}>
+          <img width={85} height={85} style={{display:'block', margin:'auto'}}  src={checkgif}></img>
+          <h3>Activated</h3>
+          <p>Your Event has been Activated</p>
+        </ModalBody>
+        <ModalFooter>
+          <Button style={{display:'block', margin:'auto'}} color="primary" onClick={() => {
+            setSuccessModal(!successModal)
+            }}>
+            OK
+          </Button>
+        </ModalFooter>
+      </Modal>
+        {/* sucessmodal */}
+    </>
+     </Col>
+      
+    </Row>
+     <Modal isOpen={basicModal} toggle={() => setBasicModal(!basicModal)}>
+    <ModalHeader toggle={() => setBasicModal(!basicModal)}>Delete</ModalHeader>
+    <ModalBody className='d-flex justify-content-center'>
+     <div style={{color:'red'}} ><Icons.AlertCircle size={70}/></div> <br /> <br /> 
+    </ModalBody>
+    <div className='d-flex justify-content-center'><h2>Are You Sure</h2></div>
+    <div className='d-flex justify-content-center'><p>You won't be able to revert this!</p></div>
+     
+    <ModalFooter>
+    <div style={{display:'flex', justifyContent:'space-between', width:'100%'}}>
+      
+     <Button.Ripple className='d-flex justify-content-center delete' style={{color:"white"}} outline onClick={() => setBasicModal(!basicModal)}>
+       Yes, delete it!
+     </Button.Ripple>
+     <Button.Ripple className='d-flex justify-content-center' color='primary' outline onClick={() => setBasicModal(!basicModal)} >
+       Cancle
+     </Button.Ripple>
+
+     </div>
+    
+    </ModalFooter>
+  </Modal> 
+    {/* In-active */}
+      <Modal isOpen={inactive} toggle={() => setInactive(!inactive)}>
+        <ModalHeader toggle={() => setInactive(!inactive)}>
+        </ModalHeader>
+        <ModalBody style={{textAlign:'center', display:'flex', flexDirection:'column', gap:'10px'}}>
+          <img width={85} height={85} style={{display:'block', margin:'auto'}}  src={alergif}></img>
+          <h3>Are you sure?</h3>
+          <p>You won't be able to revert this!</p>
+        </ModalBody>
+        <ModalFooter style={{display:'flex', width:'100%', justifyContent:'space-between'}}>
+          <Button color="warning" onClick={() => {
+            setSuccessin(!successin)
+            setTimeout(() => {
+              setInactive(!inactive)
+            }, 200)
+          }}>
+            Yes, In-Activate.
+          </Button>
+          <Button.Ripple outline color="primary" type="reset" onClick={() => {
+              setCancelModal(!cancelModal)
+              setTimeout(() => {
+                setInactive(!inactive)
+              }, 200)
+          }}>
+            Cancel
+          </Button.Ripple>
+        </ModalFooter>
+      </Modal>
+      {/* In-active */}
+          {/* sucessmodal In-active */}
+       <Modal isOpen={successin} toggle={() => setSuccessin(!successin)}>
+        <ModalBody style={{textAlign:'center', display:'flex', flexDirection:'column', gap:'10px'}}>
+          <img width={85} height={85} style={{display:'block', margin:'auto'}}  src={checkgif}></img>
+          <h3>In-Activated</h3>
+          <p>Your Event has been In-Activated</p>
+        </ModalBody>
+        <ModalFooter>
+          <Button style={{display:'block', margin:'auto'}} color="primary" onClick={() => {
+            setSuccessin(!successin)
+            }}>
+            OK
+          </Button>
+        </ModalFooter>
+      </Modal>
+        {/* sucessmodal In-active */}
+
+        {/* Delete */}
+      <Modal isOpen={eventdelete} toggle={() => setEventDelete(!eventdelete)}>
+        <ModalHeader toggle={() => setEventDelete(!eventdelete)}>
+        </ModalHeader>
+        <ModalBody style={{textAlign:'center', display:'flex', flexDirection:'column', gap:'10px'}}>
+          <img width={85} height={85} style={{display:'block', margin:'auto'}}  src={alergif}></img>
+          <h3>Are you sure?</h3>
+          <p>You won't be able to revert this!</p>
+        </ModalBody>
+        <ModalFooter style={{display:'flex', width:'100%', justifyContent:'space-between'}}>
+          <Button color="danger" onClick={() => {
+            setDeleteSuccess(!successin)
+            setTimeout(() => {
+              setEventDelete(!eventdelete)
+            }, 200)
+          }}>
+            Yes, Delete.
+          </Button>
+          <Button.Ripple outline color="primary" type="reset" onClick={() => {
+              setCancelModal(!cancelModal)
+              setTimeout(() => {
+                setEventDelete(!eventdelete)
+              }, 200)
+          }}>
+            Cancel
+          </Button.Ripple>
+        </ModalFooter>
+      </Modal>
+      {/* Delete */}
+
+      {/* sucessmodal Delete */}
+      <Modal isOpen={deletesuccess} toggle={() => setDeleteSuccess(!deletesuccess)}>
+        <ModalBody style={{textAlign:'center', display:'flex', flexDirection:'column', gap:'10px'}}>
+          <img width={85} height={85} style={{display:'block', margin:'auto'}}  src={checkgif}></img>
+          <h3>Deleted</h3>
+          <p>Your Event has been Deleted</p>
+        </ModalBody>
+        <ModalFooter>
+          <Button style={{display:'block', margin:'auto'}} color="primary" onClick={() => {
+            setDeleteSuccess(!deletesuccess)
+            }}>
+            OK
+          </Button>
+        </ModalFooter>
+      </Modal>
+        {/* sucessmodal Delete */}
+
         </>
       )
     }
@@ -388,3 +610,5 @@ export const multiLingColumns = [
 // ]
 
 export default ExpandableTable
+
+//////////////////////////////////////////////////////
