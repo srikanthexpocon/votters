@@ -8,7 +8,11 @@ const ExibitiorsRoutes = [
   },
   {
     path: '/exibitiors/addexibitiors',
-    component: lazy(() => import('../../views/exibitiors/Addexibitiors'))
+    component: lazy(() => import('../../views/exibitiors/AddExibitiors'))
+  },
+  {
+    path: '/exibitiors/user/list',
+    component: lazy(() => import('../../views/exibitiors/user/list'))
   }
   
 ]

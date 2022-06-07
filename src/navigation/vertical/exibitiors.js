@@ -18,7 +18,13 @@ export default [
         title: 'Add Exibitior',
         icon: <Users size={20} />,
         navLink: '/exibitiors/Addexibitiors'
-      }
+      },
       
+      {
+        id: 'users',
+        title: 'All Exibitiors',
+        icon: <CreditCard size={20} />,
+        navLink: '/exibitiors/user/list'
+      }
 
     ]      

@@ -3,12 +3,16 @@ import AppRoutes from './Apps'
 import FormRoutes from './Forms'
 import ExibitiorsRoutes from './Exibitiors'
 import PageRoutes from './Page'
+import FormsRoutes from './Form'
+import ProductsRoutes from './Products'
+import PagesRoutes from './Pages'
 import TablesRoutes from './Tables'
 import ChartMapsRoutes from './ChartsMaps'
 import DashboardRoutes from './Dashboards'
 import UiElementRoutes from './UiElements'
 import ExtensionsRoutes from './Extensions'
 import PageLayoutsRoutes from './PageLayouts'
+import OrdersRoutes from './Orders'
 
 // ** Document title
 const TemplateTitle = '%s - Vuexy React Admin Template'
@@ -22,6 +26,10 @@ const Routes = [
   ...AppRoutes,
   ...ExibitiorsRoutes,
   ...PageRoutes,
+  ...FormsRoutes,
+  ...OrdersRoutes,
+  ...ProductsRoutes,
+  ...PagesRoutes,
   ...UiElementRoutes,
   ...ExtensionsRoutes,
   ...PageLayoutsRoutes,

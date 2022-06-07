@@ -3,15 +3,21 @@ import Avatar from '@components/avatar'
 
 // ** Third Party Components
 import axios from 'axios'
-import { MoreVertical, Edit, FileText, Archive, Trash, Check, Eye, XCircle} from 'react-feather'
+import { MoreVertical, Edit, FileText, Archive, Trash, Check, Eye, ArrowRightCircle, XCircle} from 'react-feather'
 import { Badge, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem, Button, Modal, ModalHeader, ModalBody, ModalFooter, Row, Col, Card, CardHeader, CardTitle, CardBody, CardText} from 'reactstrap'
 import * as Icons from 'react-feather'
 import { useState } from "react"
 import checkgif from '@src/assets/images/icons8-ok.gif'
 import alergif from '@src/assets/images/icons8-box-important.gif'
 import cancelpng from '@src/assets/images/cancle.gif'
-// import deletegif from '@src/assets/images/deleteicon.gif'
-import deleteimg from '@src/assets/images/deleteimg.gif'
+import deletegif from '@src/assets/images/deleteicon.gif'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  useRouteMatch
+} from "react-router-dom"
 
 // ** Vars
 const states = ['success', 'danger', 'warning', 'info', 'dark', 'primary', 'secondary']
@@ -38,7 +44,7 @@ export const basicColumns = [
     name: 'Serial.no',
     selector: 'id',
     sortable: true,
-    maxWidth: '100px'
+    maxWidth: '50px'
   },
   {
     name: 'Name',
@@ -189,13 +195,12 @@ export const multiLingColumns = [
     sortable: true,
     minWidth: '150px',
     maxWidth: '5%'
-    
   },
   {
-    name: 'Name',
+    name: 'Event Name',
     selector: 'full_name',
     sortable: true,
-    minWidth: '250px'
+    minWidth: '300px'
    
   },
   // {
@@ -205,17 +210,16 @@ export const multiLingColumns = [
   //   minWidth: '250px'
   // },
   {
-    name: 'Stall.no.',
+    name: 'Event Code',
     selector: 'stall_no',
     sortable: true,
-    minWidth: '150px',
-    maxWidth: '3%'
+    minWidth: '100px'
   },
   {
-    name: 'Email',
-    selector: 'email',
+    name: 'Start Date',
+    selector: 'start_date',
     sortable: true,
-    minWidth: '250px'
+    minWidth: '150px'
   },
   // {
   //   name: 'Date',
@@ -231,19 +235,12 @@ export const multiLingColumns = [
   //   minWidth: '150px'
   // },
   {
-    name: 'Password',
-    selector: 'password',
-    sortable: true,
-    minWidth: '100px',
-    maxWidth: '10%'
-  },
-
-  {
-    name: 'Contact No.',
-    selector: 'contact',
+    name: 'End Date',
+    selector: 'end_date',
     sortable: true,
     minWidth: '150px'
   },
+
   {
     name: 'Status',
     selector: 'status',
@@ -285,10 +282,15 @@ export const multiLingColumns = [
       return (
         <>
         <div className='d-flex'>
+        <Link to='/apps/mydashboard'>
+          
+            <span className='pr-1' size={10}><ArrowRightCircle /></span>
+          
+          </Link> 
         {/* <div><a className='btn' style={{color:"white", backgroundColor:"red"}} onClick={() => setBasicModal(!basicModal)}>Delete</a></div> */}
-        <UncontrolledDropdown>
+        {/* <UncontrolledDropdown>
             <DropdownToggle className='pr-1' tag='span'>
-              <Edit size={20} />
+              <ArrowRightCircle style={{color: "#5d67f7"}} size={25} />
             </DropdownToggle>
             <DropdownMenu right>
               <DropdownItem className='w-100' onClick={() => {
@@ -307,10 +309,10 @@ export const multiLingColumns = [
                 <span className='align-middle ml-50'>Delete</span>
               </DropdownItem>
             </DropdownMenu>
-          </UncontrolledDropdown>
+          </UncontrolledDropdown> */}
           {/* <Edit  size={15} /> */}
           {/* <Edit onClick={() => setBasicModal(!basicModal)}  size={20}  /> */}
-          <Eye  size={20} />
+          {/* <Eye  size={20} /> */}
         </div>
         
         <Row>
@@ -514,8 +516,8 @@ export const multiLingColumns = [
       {/* sucessmodal Delete */}
       <Modal isOpen={deletesuccess} toggle={() => setDeleteSuccess(!deletesuccess)}>
         <ModalBody style={{textAlign:'center', display:'flex', flexDirection:'column', gap:'10px'}}>
-          <img width={150}  style={{display:'block', margin:'auto'}}  src={deleteimg}></img>
-          <h3 style={{color:'red', fontWeight:600}}>Deleted</h3>
+          <img width={150} height={120} style={{display:'block', margin:'auto'}}  src={deletegif}></img>
+          <h3>Deleted</h3>
           <p>Your Event has been Deleted</p>
         </ModalBody>
         <ModalFooter>

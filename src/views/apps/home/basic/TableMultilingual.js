@@ -155,14 +155,14 @@ const DataTableWithButtons = () => {
                 </DropdownItem>
               </DropdownMenu>
             </UncontrolledButtonDropdown>
-            <Button className='ml-2' color='primary' onClick={handleModal}>
+            {/* <Button className='ml-2' color='primary' onClick={handleModal}>
               <Plus size={15} />
               <span className='align-middle ml-50'>Add Exibitior</span>
-            </Button>
+            </Button> */}
           </div>
         </CardHeader>
       <Row className='justify-content-end mx-0'>
-        <Col className='d-flex align-items-center justify-content-end mt-1' md='6' sm='12'>
+        <Col className='d-flex align-items-center justify-content-end mt-1' md='3' sm='12'>
           <Label className='mr-1' for='search-input-1'>
             <FormattedMessage id='Search' />
           </Label>
@@ -173,12 +173,10 @@ const DataTableWithButtons = () => {
             id='search-input-1'
             value={searchValue}
             onChange={handleFilter}
-            
           />
         </Col>
       </Row>
-      <DataTable 
-        
+      <DataTable
         noHeader
         pagination
         selectableRowsNoSelectAll

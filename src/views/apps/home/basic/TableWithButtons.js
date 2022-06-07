@@ -1,29 +1,48 @@
 // ** React Imports
-import { Fragment, useState } from 'react'
+import { Fragment, useState, forwardRef } from 'react'
 
-// ** Table Columns
-import { data, multiLingColumns } from '../data'
+// ** Table Data & Columns
+import { data, columns } from '../data'
+
+// ** Add New Modal Component
+import AddNewModal from './AddNewModal'
 
 // ** Third Party Components
 import ReactPaginate from 'react-paginate'
-import { ChevronDown, Share, Printer, FileText, File, Grid, Copy, Plus} from 'react-feather'
-import { FormattedMessage } from 'react-intl'
 import DataTable from 'react-data-table-component'
-import { Card, CardHeader, CardTitle, CardFooter, Button, CardText, Input, UncontrolledButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem, Label, Row, Col } from 'reactstrap'
+import { ChevronDown, Share, Printer, FileText, File, Grid, Copy, Plus } from 'react-feather'
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  Button,
+  UncontrolledButtonDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
+  Input,
+  Label,
+  Row,
+  Col
+} from 'reactstrap'
+
+// ** Bootstrap Checkbox Component
+const BootstrapCheckbox = forwardRef(({ onClick, ...rest }, ref) => (
+  <div className='custom-control custom-checkbox'>
+    <input type='checkbox' className='custom-control-input' ref={ref} {...rest} />
+    <label className='custom-control-label' onClick={onClick} />
+  </div>
+))
 
 const DataTableWithButtons = () => {
-  // ** State
+  // ** States
   const [modal, setModal] = useState(false)
-  
   const [currentPage, setCurrentPage] = useState(0)
   const [searchValue, setSearchValue] = useState('')
   const [filteredData, setFilteredData] = useState([])
 
-  // ** Function to handle pagination
+  // ** Function to handle Modal toggle
   const handleModal = () => setModal(!modal)
-  const handlePagination = page => {
-    setCurrentPage(page.selected)
-  }
 
   // ** Function to handle filter
   const handleFilter = e => {
@@ -49,9 +68,6 @@ const DataTableWithButtons = () => {
           item.salary.toLowerCase().startsWith(value.toLowerCase()) ||
           item.start_date.toLowerCase().startsWith(value.toLowerCase()) ||
           item.id.toLowerCase().startsWith(value.toLowerCase()) ||
-          item.contact.toLowerCase().startsWith(value.toLowerCase()) ||
-          item.stall_no.toLowerCase().startsWith(value.toLowerCase()) ||
-          item.password.toLowerCase().startsWith(value.toLowerCase()) ||
           status[item.status].title.toLowerCase().startsWith(value.toLowerCase())
 
         const includes =
@@ -61,10 +77,8 @@ const DataTableWithButtons = () => {
           item.age.toLowerCase().includes(value.toLowerCase()) ||
           item.salary.toLowerCase().includes(value.toLowerCase()) ||
           item.start_date.toLowerCase().includes(value.toLowerCase()) ||
-          item.id.toLowerCase().startsWith(value.toLowerCase()) ||
-          item.contact.toLowerCase().startsWith(value.toLowerCase()) ||
           status[item.status].title.toLowerCase().includes(value.toLowerCase())
-          
+
         if (startsWith) {
           return startsWith
         } else if (!startsWith && includes) {
@@ -76,56 +90,86 @@ const DataTableWithButtons = () => {
     }
   }
 
-  // ** Pagination Previous Component
-  const Previous = () => {
-    return (
-      <Fragment>
-        <span className='align-middle d-none d-md-inline-block'>
-          <FormattedMessage id='Prev' />
-        </span>
-      </Fragment>
-    )
+  // ** Function to handle Pagination
+  const handlePagination = page => {
+    setCurrentPage(page.selected)
   }
 
-  // ** Pagination Next Component
-  const Next = () => {
-    return (
-      <Fragment>
-        <span className='align-middle d-none d-md-inline-block'>
-          <FormattedMessage id='Next' />
-        </span>
-      </Fragment>
-    )
-  }
-
-  // ** Custom Pagination Component
+  // ** Custom Pagination
   const CustomPagination = () => (
     <ReactPaginate
-      previousLabel={<Previous size={15} />}
-      nextLabel={<Next size={15} />}
+      previousLabel=''
+      nextLabel=''
       forcePage={currentPage}
       onPageChange={page => handlePagination(page)}
       pageCount={searchValue.length ? filteredData.length / 7 : data.length / 7 || 1}
-      breakLabel={'...'}
+      breakLabel='...'
       pageRangeDisplayed={2}
       marginPagesDisplayed={2}
-      activeClassName={'active'}
-      pageClassName={'page-item'}
-      nextLinkClassName={'page-link'}
-      nextClassName={'page-item next'}
-      previousClassName={'page-item prev'}
-      previousLinkClassName={'page-link'}
-      pageLinkClassName={'page-link'}
+      activeClassName='active'
+      pageClassName='page-item'
       breakClassName='page-item'
       breakLinkClassName='page-link'
-      containerClassName={'pagination react-paginate pagination-sm justify-content-end pr-1 mt-1'}
+      nextLinkClassName='page-link'
+      nextClassName='page-item next'
+      previousClassName='page-item prev'
+      previousLinkClassName='page-link'
+      pageLinkClassName='page-link'
+      // breakClassName='page-item'
+      // breakLinkClassName='page-link'
+      containerClassName='pagination react-paginate separated-pagination pagination-sm justify-content-end pr-1 mt-1'
     />
   )
 
+  // ** Converts table to CSV
+  function convertArrayOfObjectsToCSV(array) {
+    let result
+
+    const columnDelimiter = ','
+    const lineDelimiter = '\n'
+    const keys = Object.keys(data[0])
+
+    result = ''
+    result += keys.join(columnDelimiter)
+    result += lineDelimiter
+
+    array.forEach(item => {
+      let ctr = 0
+      keys.forEach(key => {
+        if (ctr > 0) result += columnDelimiter
+
+        result += item[key]
+
+        ctr++
+      })
+      result += lineDelimiter
+    })
+
+    return result
+  }
+
+  // ** Downloads CSV
+  function downloadCSV(array) {
+    const link = document.createElement('a')
+    let csv = convertArrayOfObjectsToCSV(array)
+    if (csv === null) return
+
+    const filename = 'export.csv'
+
+    if (!csv.match(/^data:text\/csv/i)) {
+      csv = `data:text/csv;charset=utf-8,${csv}`
+    }
+
+    link.setAttribute('href', encodeURI(csv))
+    link.setAttribute('download', filename)
+    link.click()
+  }
+
   return (
-    <Card>
-      <CardHeader className='flex-md-row flex-column align-md-items-center align-items-start border-bottom'>
-          <CardTitle tag='h4'>All Exibitors</CardTitle>
+    <Fragment>
+      <Card>
+        <CardHeader className='flex-md-row flex-column align-md-items-center align-items-start border-bottom'>
+          <CardTitle tag='h4'>DataTable with Buttons</CardTitle>
           <div className='d-flex mt-md-0 mt-1'>
             <UncontrolledButtonDropdown>
               <DropdownToggle color='secondary' caret outline>
@@ -157,46 +201,41 @@ const DataTableWithButtons = () => {
             </UncontrolledButtonDropdown>
             <Button className='ml-2' color='primary' onClick={handleModal}>
               <Plus size={15} />
-              <span className='align-middle ml-50'>Add Exibitior</span>
+              <span className='align-middle ml-50'>Add Record</span>
             </Button>
           </div>
         </CardHeader>
-      <Row className='justify-content-end mx-0'>
-        <Col className='d-flex align-items-center justify-content-end mt-1' md='6' sm='12'>
-          <Label className='mr-1' for='search-input-1'>
-            <FormattedMessage id='Search' />
-          </Label>
-          <Input
-            className='dataTable-filter mb-50'
-            type='text'
-            bsSize='sm'
-            id='search-input-1'
-            value={searchValue}
-            onChange={handleFilter}
-            
-          />
-        </Col>
-      </Row>
-      <DataTable 
-        
-        noHeader
-        pagination
-        selectableRowsNoSelectAll
-        columns={multiLingColumns}
-        className='react-dataTable'
-        paginationPerPage={7}
-        sortIcon={<ChevronDown size={10} />}
-        paginationDefaultPage={currentPage + 1}
-        paginationComponent={CustomPagination}
-        data={searchValue.length ? filteredData : data}
-      />
-      <CardFooter>
-        <CardText className='mb-0'>
-          <span className='font-weight-bold'>Note:</span>{' '}
-          <span>Use Intl Dropdown in Navbar to change table language</span>
-        </CardText>
-      </CardFooter>
-    </Card>
+        <Row className='justify-content-end mx-0'>
+          <Col className='d-flex align-items-center justify-content-end mt-1' md='6' sm='12'>
+            <Label className='mr-1' for='search-input'>
+              Search
+            </Label>
+            <Input
+              className='dataTable-filter mb-50'
+              type='text'
+              bsSize='sm'
+              id='search-input'
+              value={searchValue}
+              onChange={handleFilter}
+            />
+          </Col>
+        </Row>
+        <DataTable
+          noHeader
+          pagination
+          selectableRows
+          columns={columns}
+          paginationPerPage={7}
+          className='react-dataTable'
+          sortIcon={<ChevronDown size={10} />}
+          paginationDefaultPage={currentPage + 1}
+          paginationComponent={CustomPagination}
+          data={searchValue.length ? filteredData : data}
+          selectableRowsComponent={BootstrapCheckbox}
+        />
+      </Card>
+      <AddNewModal open={modal} handleModal={handleModal} />
+    </Fragment>
   )
 }
 

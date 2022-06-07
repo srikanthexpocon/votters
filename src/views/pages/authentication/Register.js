@@ -196,7 +196,7 @@ const Register = () => {
                   value={password}
                   id='register-password'
                   name='register-password'
-                  className='input-group-merge'
+                  // className='input-group-merge'
                   onChange={e => setPassword(e.target.value)}
                   className={classnames({ 'is-invalid': errors['register-password'] })}
                   innerRef={register({ required: true, validate: value => value !== '' })}

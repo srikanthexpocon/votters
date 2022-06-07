@@ -5,7 +5,7 @@ import VerticalFormIcons from "./VerticalFormIcons"
 import "@styles/base/pages/dashboard-ecommerce.scss"
 import CheckDeletePopup from "./CheckDeletePopup"
 import alergif from '@src/assets/images/icons8-box-important.gif' 
-import cancelpng from '@src/assets/images/icons8-close-48.png'
+import cancelpng from '@src/assets/images/cancle.gif'
 import checkgif from '@src/assets/images/icons8-ok.gif'
 const Popup = () => {
   const [addElection, setAddElection] = useState(false)
@@ -14,14 +14,19 @@ const Popup = () => {
   const [successModal, setSuccessModal] = useState(false)
   return (
     <>
-      <Button
+
+      <Button className='ml-2' color='primary' onClick={() => setAddElection(!addElection)}>
+        <Plus size={15} />
+        <span className='align-middle'>Add Event</span>
+      </Button>
+      {/* <Button
         className="ml-2 d-flex pt-1"
         color="primary"
         onClick={() => setAddElection(!addElection)}
       >
         <Plus size={18} />
-        <h4 className="align-middle" style={{color:'white'}}>Add Event</h4>
-      </Button>
+        <h6 className="align-middle" style={{color:'white'}}>Add Event</h6>
+      </Button> */}
       <Modal isOpen={addElection} toggle={() => setAddElection(!addElection)}>
         <ModalHeader toggle={() => setAddElection(!addElection)}>
           Add Event
@@ -77,7 +82,7 @@ const Popup = () => {
        {/* Cancelmodal */}
        <Modal isOpen={cancelModal} toggle={() => setCancelModal(!cancelModal)}>
         <ModalBody style={{textAlign:'center', display:'flex', flexDirection:'column', gap:'10px'}}>
-          <img width={85} height={85} style={{display:'block', margin:'auto'}}  src={cancelpng}></img>
+          <img width={150} height={120}  style={{display:'block', margin:'auto'}}  src={cancelpng}></img>
           <h3>Cancelled</h3>
           <p>Re-Create New Event Next Time</p>
         </ModalBody>

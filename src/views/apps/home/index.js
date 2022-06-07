@@ -5,7 +5,8 @@ import {
     Calendar,
   Plus,
   Search,
-  Users
+  Users,
+  ArrowRightCircle
 } from 'react-feather'
 import { useState } from 'react'
 import Popup from './Popup'
@@ -21,6 +22,8 @@ import {
   import Dream from "./AIOC-LOGO.png"
   import Pune from "./56th.jpg"
   import Edited from "./edited.jpg"
+  import TableMultilingual from "./basic/TableMultilingual"
+
 const Home = () => {
     const [basicModal, setBasicModal] = useState(false)
     const avatarArr = [
@@ -62,31 +65,32 @@ const Home = () => {
           }
       ]
     return (
+      <>
         <div id='dashboard-ecommerce'>
             <Row style={{margin:' 0px 20px'}}>
                 <Col md='6'>
                 <Col className='d-flex align-items-center justify-content-end mt-1' md='6' sm='12'>
-            <Label className='mr-1' for='search-input'>
-             <Search size={30}/>
-            </Label>
-            <Input
-              className='dataTable-filter mb-50'
-              type='text'
-              bsSize='sm'
-              id='search-input'
-               placeholder='Search Events'
-            />
-          </Col>
+                  <Label className='mr-1' for='search-input'>
+                  <Search size={30}/>
+                  </Label>
+                  <Input
+                    className='dataTable-filter mb-50'
+                    type='text'
+                    bsSize='sm'
+                    id='search-input'
+                    placeholder='Search Events'
+                  />
+                </Col>
                 </Col>
                 <Col md='6' style={{justifyContent:"right", width:'100%', display:'flex'}}><Popup/></Col>
             </Row>
-            <Row style={{margin:'20px 20px'}}>
-          <Col md='4'>
+            <Row className="pt-3" style={{margin:'20px 20px', backgroundColor: "white"}}>
+          <Col md='3'>
           <Card className='card-app-design'>
       <CardBody>
         {/* <Badge color='light-primary'>03 Sep, 20</Badge> */}
         <div className='d-flex'>
-        <img width='25%' className='img-fluid' src={Dream} alt='Logo' />
+        <img width="35%" height="30%"  className='img-fluid' src={Dream} alt='Logo' />
         <div>
         <CardTitle className='mt-1 mb-75'>AIOC 2022</CardTitle>
         <CardText className='font-small-2 mb-2'>
@@ -96,13 +100,21 @@ const Home = () => {
         </CardText>
         </div>        
         </div>
-        
+        <div className='d-flex'>
         <div className='design-group mb-2 mt-2 pt-50'>
           <h6 className='section-label'>Event Status</h6>
-          <Badge className='mr-1' color='light-warning'>
-            Bulding 
+          <Badge className='mr-1' color='success'>
+          Active 
           </Badge>
         </div>
+        <div className='design-group mb-2 ml-2 mt-2 pt-50'>
+          <h6 className='section-label'>Event Code</h6>
+          <Badge className='mr-1' style={{ backgroundColor : "black" }}>
+          A1BZ3S
+          </Badge>
+        </div>
+        </div>
+        
         <h6 className='section-label'>Time Line</h6>
         <div className='design-planning-wrapper mb-2 py-75'>
           {designPlanningArr.map(item => (
@@ -114,15 +126,14 @@ const Home = () => {
           ))}
         </div>
         <Link to='/apps/mydashboard'>
-<Button.Ripple color='primary' block>
-  View Event
-</Button.Ripple>
-</Link>
-        
+      <Button.Ripple color='primary' block>
+        <span className='pr-1' size={10}><ArrowRightCircle /></span>View Event
+      </Button.Ripple>
+      </Link>      
       </CardBody>
     </Card>
           </Col>
-          <Col md='4'>
+          <Col md='3'>
           <Card className='card-app-design'>
       <CardBody>
         {/* <Badge color='light-primary'>03 Sep, 20</Badge> */}
@@ -137,11 +148,19 @@ const Home = () => {
         </CardText>
         </div>        
         </div>
+        <div className='d-flex'>
         <div className='design-group mb-2 mt-2 pt-50'>
           <h6 className='section-label'>Event Status</h6>
-          <Badge className='mr-1' color='danger'>
-            Close 
+          <Badge className='mr-1' color='success'>
+          Active 
           </Badge>
+        </div>
+        <div className='design-group mb-2 ml-2 mt-2 pt-50'>
+          <h6 className='section-label'>Event Code</h6>
+          <Badge className='mr-1' style={{ backgroundColor : "black" }}>
+          C1NBK3
+          </Badge>
+        </div>
         </div>
         <h6 className='section-label'>Time Line</h6>
         <div className='design-planning-wrapper mb-2 py-75'>
@@ -154,14 +173,14 @@ const Home = () => {
           ))}
         </div>
         <Link to='/apps/mydashboard'>
-<Button.Ripple color='primary' block>
-  View Event
-</Button.Ripple>
-</Link>
-      </CardBody>
-    </Card>
+          <Button.Ripple color='primary' block>
+            <span className='pr-1' size={10}><ArrowRightCircle /></span>View Event
+          </Button.Ripple>
+        </Link>      
+        </CardBody>
+        </Card>
           </Col>
-          <Col md='4'>
+          <Col md='3'>
           <Card className='card-app-design'>
       <CardBody>
       <div className='d-flex'>
@@ -175,11 +194,19 @@ const Home = () => {
         </CardText>
         </div>        
         </div>
+        <div className='d-flex'>
         <div className='design-group mb-2 mt-2 pt-50'>
-          <h6 className='section-label'>Election Status</h6>
+          <h6 className='section-label'>Event Status</h6>
           <Badge className='mr-1' color='success'>
-            Open 
+          Active 
           </Badge>
+        </div>
+        <div className='design-group mb-2 ml-2 mt-2 pt-50'>
+          <h6 className='section-label'>Event Code</h6>
+          <Badge className='mr-1' style={{ backgroundColor : "black" }}>
+          B2SR1I
+          </Badge>
+        </div>
         </div>
         <h6 className='section-label'>Time Line</h6>
         <div className='design-planning-wrapper mb-2 py-75'>
@@ -192,15 +219,65 @@ const Home = () => {
           ))}
         </div>
         <Link to='/apps/mydashboard'>
-<Button.Ripple color='primary' block>
-  View Event
-</Button.Ripple>
-</Link>
-      </CardBody>
-    </Card>
+          <Button.Ripple color='primary' block>
+            <span className='pr-1' size={10}><ArrowRightCircle /></span>View Event
+          </Button.Ripple>
+        </Link>      
+              </CardBody>
+            </Card>
+          </Col>
+          <Col md='3'>
+          <Card className='card-app-design'>
+      <CardBody>
+      <div className='d-flex'>
+        <img width='25%' className='img-fluid' src={Edited} alt='Logo' />
+        <div>
+        <CardTitle className='mt-1 ml-1 mb-75'>HSICON 2022</CardTitle>
+        <CardText className='font-small-2 ml-1 mb-2'>
+          <span  className='section-label'>VENUE: </span>
+          Birla Auditorium - Jaipur Birla Auditorium, Jaipur, Rajasthan
+          HSICON 2022 - Jaipur
+        </CardText>
+        </div>        
+        </div>
+        <div className='d-flex'>
+        <div className='design-group mb-2 mt-2 pt-50'>
+          <h6 className='section-label'>Event Status</h6>
+          <Badge className='mr-1' color='success'>
+          Active 
+          </Badge>
+        </div>
+        <div className='design-group mb-2 ml-2 mt-2 pt-50'>
+          <h6 className='section-label'>Event Code</h6>
+          <Badge className='mr-1' style={{ backgroundColor : "black" }}>
+          A2X58H
+          </Badge>
+        </div>
+        </div>
+        <h6 className='section-label'>Time Line</h6>
+        <div className='design-planning-wrapper mb-2 py-75'>
+          {designPlanningArr.map(item => (
+            <div key={item.title} className='design-planning'>
+              <CardText className='mb-25'>{item.title}</CardText>
+              <h6 className='mb-0'>{item.subtitle}</h6>
+              {/* <Badge style={{marginTop:'10px'}} color='light-primary'>{item.time}</Badge> */}
+            </div>
+          ))}
+        </div>
+        <Link to='/apps/mydashboard'>
+          <Button color='primary' block>
+            <span className='pr-1' size={10}><ArrowRightCircle /></span>View Event
+          </Button>
+        </Link>      
+              </CardBody>
+            </Card>
           </Col>
           </Row>
       </div>
+      <Col sm='12'>
+          <TableMultilingual />
+        </Col>
+      </>
     )
 }
 export default Home

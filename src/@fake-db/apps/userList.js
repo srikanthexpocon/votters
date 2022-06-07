@@ -5,7 +5,7 @@ const data = {
   users: [
     {
       id: 1,
-      fullName: 'Galen Slixby',
+      fullName: 'Sun Pharma',
       company: 'Yotz PVT LTD',
       role: 'editor',
       username: 'gslixby0',
@@ -13,8 +13,8 @@ const data = {
       contact: '(479) 232-9151',
       email: 'gslixby0@abc.net.au',
       currentPlan: 'enterprise',
-      status: 'inactive',
-      avatar: ''
+      status: 'inactive'
+     
     },
     {
       id: 2,

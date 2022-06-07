@@ -14,10 +14,12 @@ const data = [
     contact: '+917036042517',
     city: 'Krasnosilka',
     start_date: '09/23/2016',
+    end_date: '30/03/2022',
     salary: '$23896.35',
     age: '61',
     experience: '1 Year',
     status:1
+    
   },
   {
     responsive_id: '',
@@ -30,10 +32,11 @@ const data = [
     contact: '+917036042517',
     city: 'Hinigaran',
     start_date: '05/20/2018',
+    end_date: '23/02/2022',
     salary: '$13633.69',
     age: '63',
     experience: '3 Years',
-    status: 3
+    status: 2
   },
   {
     responsive_id: '',
@@ -46,6 +49,7 @@ const data = [
     contact: '+917036042517',
     city: 'Golcowa',
     start_date: '03/24/2018',
+    end_date: '01/03/2022',
     salary: '$13076.28',
     age: '66',
     experience: '6 Years',
@@ -62,6 +66,7 @@ const data = [
     contact: '+917036042517',
     city: 'Paquera',
     start_date: '12/03/2017',
+    end_date: '04/02/2022',
     salary: '$12336.17',
     age: '22',
     experience: '2 Years',
@@ -78,6 +83,7 @@ const data = [
     contact: '+917036042517',
     city: 'Lucan',
     start_date: '08/25/2017',
+    end_date: '13/03/2022',
     salary: '$10909.52',
     age: '33',
     experience: '3 Years',
@@ -93,7 +99,8 @@ const data = [
     password: 'abcd1234',
     contact: '+917036042517',
     city: 'Maofan',
-    start_date: '06/01/2017',
+    start_date: '22/08/2022',
+    end_date: '23/08/2022',
     salary: '$17803.80',
     age: '61',
     experience: '1 Year',
@@ -110,10 +117,11 @@ const data = [
     contact: '+917036042517',
     city: 'Lampuyang',
     start_date: '10/15/2017',
+    end_date: '23/08/2022',
     salary: '$18991.67',
     age: '59',
     experience: '9 Years',
-    status: 3
+    status: 2
   },
   {
     responsive_id: '',
@@ -126,10 +134,11 @@ const data = [
     contact: '+917036042517',
     city: 'Skoghall',
     start_date: '11/05/2016',
+    end_date: '28/08/2022',
     salary: '$19230.13',
     age: '55',
     experience: '5 Years',
-    status: 3
+    status: 2
   },
   {
     responsive_id: '',
@@ -145,7 +154,7 @@ const data = [
     salary: '$11677.32',
     age: '39',
     experience: '9 Years',
-    status: 5
+    status: 3
   },
   {
     responsive_id: '',
@@ -161,7 +170,7 @@ const data = [
     salary: '$15939.52',
     age: '23',
     experience: '3 Years',
-    status: 2
+    status: 1
   },
   {
     responsive_id: '',

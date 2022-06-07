@@ -1,8 +1,9 @@
 import { Fragment } from 'react'
 import { Row, Col } from 'reactstrap'
-import Allexibitiors from './Allexibitiors'
+import AddProduct from './AddProduct'
+import Categories from './Categories'
+import AllProducts from './AllProducts'
 
-import AddExibitiors from './AddExibitiors'
 
 const FormLayouts = () => {
   return (
@@ -10,8 +11,9 @@ const FormLayouts = () => {
       {/* <Breadcrumbs breadCrumbTitle='Associate Member' breadCrumbParent='Form' breadCrumbActive='Associate Member' /> */}
       <Row>
         <Col sm='12'>
-          <Allexibitiors />
-          <AddExibitiors />
+          <AddProduct />
+          <AllProducts />
+          <Categories />        
         </Col>
       </Row>
     </Fragment>
