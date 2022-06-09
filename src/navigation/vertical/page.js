@@ -17,14 +17,20 @@ export default [
         id: 'add-page',
         title: 'Add Page',
         icon: <Users size={20} />,
-        navLink: '/page/addpage'
+        navLink: '/page/addpages'
       },
-
       {
-        id: 'categories',
+        id: 'page-users',
         title: 'Categories',
-        icon: <Users size={20} />,
-        navLink: '/page/categories'
+        icon: <CreditCard size={20} />,
+        navLink: '/page/user/list'
       }
+
+      // {
+      //   id: 'categories',
+      //   title: 'Categories',
+      //   icon: <Users size={20} />,
+      //   navLink: '/page/categories'
+      // }
 
     ]         

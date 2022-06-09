@@ -76,7 +76,8 @@ const statusObj = {
 export const columns = [
   {
     name: 'Id',
-    minWidth: '100px',
+    minWidth: '10px',
+    maxWidth:'15%',
     selector: 'id',
     sortable: true
     // cell: row => renderRole(row)
@@ -102,35 +103,35 @@ export const columns = [
       </div>
     )
   },
-  {
-    name: 'Stall No.',
-    minWidth: '150px',
-    selector: 'stall_no',
-    sortable: true
-    // cell: row => renderRole(row)
-  },
-  {
-    name: 'Email',
-    minWidth: '320px',
-    selector: 'email',
-    sortable: true,
-    cell: row => row.email
-  },
-  {
-    name: 'Password',
-    minWidth: '200px',
-    selector: 'password',
-    sortable: true,
-    cell: row => row.password
-  },
+  // {
+  //   name: 'Stall No.',
+  //   minWidth: '150px',
+  //   selector: 'stall_no',
+  //   sortable: true
+  //   // cell: row => renderRole(row)
+  // },
+  // {
+  //   name: 'Email',
+  //   minWidth: '320px',
+  //   selector: 'email',
+  //   sortable: true,
+  //   cell: row => row.email
+  // },
+  // {
+  //   name: 'Password',
+  //   minWidth: '200px',
+  //   selector: 'password',
+  //   sortable: true,
+  //   cell: row => row.password
+  // },
  
-  {
-    name: 'Contact',
-    minWidth: '138px',
-    selector: 'contact',
-    sortable: true,
-    cell: row => <span className='text-capitalize'>{row.contact}</span>
-  },
+  // {
+  //   name: 'Contact',
+  //   minWidth: '138px',
+  //   selector: 'contact',
+  //   sortable: true,
+  //   cell: row => <span className='text-capitalize'>{row.contact}</span>
+  // },
   {
     name: 'Status',
     minWidth: '138px',

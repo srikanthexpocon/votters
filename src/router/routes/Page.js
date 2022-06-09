@@ -7,13 +7,17 @@ const PageRoutes = [
     component: lazy(() => import('../../views/page/AllPages'))
   },
   {
-    path: '/page/AddPage',
-    component: lazy(() => import('../../views/page/AddPage'))
+    path: '/page/AddPages',
+    component: lazy(() => import('../../views/page/AddPages'))
   },
   {
-    path: '/page/Categories',
-    component: lazy(() => import('../../views/page/Categories'))
+    path: '/page/user/list',
+    component: lazy(() => import('../../views/page/user/list'))
   }
+  // {
+  //   path: '/page/Categories',
+  //   component: lazy(() => import('../../views/page/Categories'))
+  // }
   
 ]
 

@@ -10,11 +10,11 @@ const colourOptions = [
   { value: 'In-Active', label: 'In-Active' } 
 ]
 
-const AddExibitiors = () => {
+const AddPages = () => {
   return (
     <Card>
       <CardHeader>
-        <CardTitle tag='h1'>Add Exibitior</CardTitle>
+        <CardTitle tag='h1'>Add Pages</CardTitle>
       </CardHeader>
       <CardBody>
         <Form>
@@ -25,46 +25,10 @@ const AddExibitiors = () => {
                 <Input type='text' name='name' id='nameMulti' required/>
               </FormGroup>
             </Col>
-            <Col md='12' sm='12'>
-              <FormGroup>
-                <Label for='email'>Email<span style={{color:'red', fontSize: 18}} >*</span></Label>
-                <Input placeholder="Enter Your Email" id='email'/>
-              </FormGroup>
-            </Col>
-            <Col md='12' sm='12'>
-              <FormGroup>
-                <Label for='Password'>Password<span style={{color:'red', fontSize: 18}} >*</span></Label>
-                <Input type='password' name='password' id='password'/>
-              </FormGroup>
-            </Col>
-            <Col>
-            <CustomInput
-            type='checkbox'
-            className='custom-control-Primary'
-            id='Primary'
-            label='Auto Generate'
-            
-            inline
-            />
-            </Col>
-            <br />
-            <Col md='12' sm='12'>
-              <FormGroup>
-                <Label for='Password'>Contact No.<span style={{color:'red', fontSize: 18}} >*</span></Label>
-                <Input type='phone' name='password' id='contact'/>
-              </FormGroup>
-            </Col>
-            <br />
-            <Col md='12' sm='12'>
-              <FormGroup>
-                <Label for='Password'>Stall No.<span style={{color:'red', fontSize: 18}} >*</span></Label>
-                <Input type='phone' name='password' id='stall'/>
-              </FormGroup>
-            </Col>
-            <br />
+          
             <Col md='12' sm='12'>
             <FormGroup>
-                <Label for='CountryMulti'>Status<span style={{color:'red', fontSize: 18}} >*</span></Label>
+                <Label for='CountryMulti'>Catagiors<span style={{color:'red', fontSize: 18}} >*</span></Label>
                 {/* <Label>Basic</Label> */}
             <Select
               theme={selectThemeColors}
@@ -74,10 +38,15 @@ const AddExibitiors = () => {
               options={colourOptions}
               isClearable={false}
             />
-              </FormGroup>
-              
+              </FormGroup>              
             </Col>
             <br />
+            <Col md='12' sm='12'>
+              <FormGroup>
+                <Label for='nameMulti'>Discription<span style={{color:'red', fontSize: 18}} >*</span></Label>
+                <Input type='textarea' name='name' id='nameMulti' required/>
+              </FormGroup>
+            </Col>
             </Row>
             <br/>
             <Col>
@@ -95,4 +64,4 @@ const AddExibitiors = () => {
     </Card>
   )
 }
-export default AddExibitiors
+export default AddPages

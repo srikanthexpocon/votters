@@ -6,7 +6,7 @@ export default [
     id: 'home',
     title: 'Home',
     icon: <Home />,
-    navLink: '/page-layout/home'
+    navLink: '/apps/home'
   },
   {
     id: 'dashboard',

@@ -2,7 +2,7 @@ import { Fragment } from 'react'
 import { Row, Col } from 'reactstrap'
 import AllPages from './AllPages'
 import Categories from './Categories'
-import AddPage from './AddPage'
+import AddPages from './AddPages'
 
 const FormLayouts = () => {
   return (
@@ -11,7 +11,7 @@ const FormLayouts = () => {
       <Row>
         <Col sm='12'>
           <AllPages />
-          <AddPage />
+          <AddPages />
           <Categories />
         </Col>
       </Row>
